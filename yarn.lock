@@ -91,21 +91,21 @@
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/@biznas/ng-tslint-rules/-/ng-tslint-rules-0.6.3.tgz#8e178466f0c8794ac9c648f435a4a9a8b24beab5"
 
-"@framing/ng-core@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@framing/ng-core/-/ng-core-0.5.5.tgz#6c266c70dd5c6dccb6adfb50a483bfec8287f9c0"
+"@framing/ng-core@0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@framing/ng-core/-/ng-core-0.5.6.tgz#4f42459929b64c9a7e7e26a8304fd8f1f878cd66"
 
-"@framing/ng-security@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@framing/ng-security/-/ng-security-0.5.5.tgz#26ac0c4749c516929771ead26ff28db83d90b692"
+"@framing/ng-security@0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@framing/ng-security/-/ng-security-0.5.6.tgz#c1548c2b3cbc0c640dfb65643cb04009bd988a8c"
 
-"@framing/ng-tasknas-framers@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@framing/ng-tasknas-framers/-/ng-tasknas-framers-0.5.5.tgz#9e5d6e65ae32f7e59a96cd698f52a08387b9c6c1"
+"@framing/ng-tasknas-framers@0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@framing/ng-tasknas-framers/-/ng-tasknas-framers-0.5.6.tgz#d825852fff0bdd89b1c34230bc3c5914992fa4de"
 
-"@framing/ng-ui@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@framing/ng-ui/-/ng-ui-0.5.5.tgz#e1326d8a3879f9a7e796e8cc7401751f9cd22811"
+"@framing/ng-ui@0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@framing/ng-ui/-/ng-ui-0.5.6.tgz#ed9e972c7989d8c39d313d8ca8b2f2ee6e5854e3"
 
 "@types/core-js@0.9.36":
   version "0.9.36"
@@ -726,8 +726,8 @@ clap@^1.0.9:
     chalk "^1.1.3"
 
 clean-css@4.0.x:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.8.tgz#063dfd593404d3a3d1db494d4b6d0f378b0781b6"
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.9.tgz#63ff450b3f939508cc0cd2989bb9daaedc98333e"
   dependencies:
     source-map "0.5.x"
 
@@ -1181,7 +1181,13 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
-debug@^2.2.0, debug@~2.2.0:
+debug@^2.2.0:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
+  dependencies:
+    ms "0.7.2"
+
+debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -1336,8 +1342,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.2.5:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.2.6.tgz#f38ad51d1919b06bc07275c62629db803ddca05a"
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.2.7.tgz#4f748061407e478c76256d04496972b71f647407"
 
 elliptic@^6.0.0:
   version "6.4.0"
