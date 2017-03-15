@@ -91,21 +91,21 @@
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/@biznas/ng-tslint-rules/-/ng-tslint-rules-0.6.3.tgz#8e178466f0c8794ac9c648f435a4a9a8b24beab5"
 
-"@framing/ng-core@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@framing/ng-core/-/ng-core-0.5.0.tgz#9ef2b3f25c1e74756dfee4d055f53f55f6d741c7"
+"@framing/ng-core@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@framing/ng-core/-/ng-core-0.5.3.tgz#9915ae8505b3a50fae02928f3dc822f9c4625cce"
 
-"@framing/ng-security@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@framing/ng-security/-/ng-security-0.5.0.tgz#18efd138f5b4fb534cbf34de7018439bd7e0ed9b"
+"@framing/ng-security@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@framing/ng-security/-/ng-security-0.5.3.tgz#3f8622d7c11beb361713d375605af3b1cb696e33"
 
-"@framing/ng-tasknas-framers@0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@framing/ng-tasknas-framers/-/ng-tasknas-framers-0.5.2.tgz#fdba663662c8f1fc27ebc88c6ad67f10596abf24"
+"@framing/ng-tasknas-framers@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@framing/ng-tasknas-framers/-/ng-tasknas-framers-0.5.3.tgz#89ead401b9bc634f4d38dce5a59e18e76dc7ae33"
 
-"@framing/ng-ui@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@framing/ng-ui/-/ng-ui-0.5.0.tgz#9b49d0bce890fbbd322bc49b62cf476f9e60a703"
+"@framing/ng-ui@0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@framing/ng-ui/-/ng-ui-0.5.3.tgz#21fc5b09db66739eb3f6da86dbe172fca6183741"
 
 "@types/core-js@0.9.36":
   version "0.9.36"
