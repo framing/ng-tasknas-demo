@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="newTaskWrapper">
+    <md-input-container class="newTaskInput">
+      <input mdInput placeholder="What are you working on?">
+    </md-input-container>
+    <button md-fab class="newTaskButton">
+      <md-icon>send</md-icon>
+    </button>
+  </div>
+  
+  
+  <div class="tasksWrapper">
+    <div class="card" *ngFor="let status of statuses">
+      <img class="card__avatar" [src]="status.user.avatarUrl" />
+      <div class="card__bubble">
+        <div class="card__content">
+          <span class="description">{{ status.description }}</span>
+          <span class="name">{{ status.user.name }}</span>
+        </div>
+        <div class="card__meta">
+          <!--<span class="mood">{{ status.mood.character }}</span>-->
+          <span class="time">{{ status.datetime | amTimeAgo }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

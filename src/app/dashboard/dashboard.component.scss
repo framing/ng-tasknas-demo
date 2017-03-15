@@ -1,0 +1,79 @@
+.tasksWrapper {
+  width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin: 1.75rem 0;
+  
+  &__avatar {
+    margin-right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+  }
+
+  &__bubble {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+    background: rgba(0,0,0,0.25);
+  }
+
+  &__content {
+    flex: 1;
+
+    .description {
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+    .name {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1.4rem;
+      font-weight: 300;
+      opacity: 0.5;
+    }
+  } // end &__content
+
+  &__meta {
+    
+    .mood {}
+    .time {
+      font-size: 1.2rem;
+      opacity: 0.25;
+    }
+  }
+} // end .card
+
+.newTaskWrapper {
+  position: relative;
+  display: block;
+  width: 60rem;
+  margin: 9rem auto 5rem;
+}
+
+.newTaskInput {
+  width: calc(100% - 2rem);
+
+  font-size: 2.5rem;
+  font-weight: 100;
+}
+
+.newTaskButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: 10;
+}
