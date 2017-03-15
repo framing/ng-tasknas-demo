@@ -6,9 +6,12 @@ import { AngularFireModule } from 'angularfire2';
 
 import { SharedModule } from './shared/shared.module';
 
+import { CirclesModule } from './circles/circles.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MoodsModule } from './moods/moods.module';
+import { SquaresModule } from './squares/squares.module';
 import { TasksModule } from './tasks/tasks.module';
+import { TriangleModule } from './triangle/triangle.module';
 import { UsersModule } from './users/users.module';
 
 import { AppBarTitleComponent } from './shared/components/app-bar-title/app-bar-title.component';
@@ -33,6 +36,9 @@ export const firebaseConfig = {
         { routerLink: '/dashboard', label: 'Dashboard' },
         { routerLink: '/tasks', label: 'Tasks' },
         { routerLink: '/moods', label: 'Moods' },
+        { routerLink: '/squares', label: 'Squares' },
+        { routerLink: '/circles', label: 'Circles' },
+        { routerLink: '/triangle', label: 'Triangle' },
         { routerLink: '/users', label: 'Users' },
       ],
     },
@@ -53,6 +59,9 @@ export const firebaseConfig = {
     { path: 'users', loadChildren: () => UsersModule },
     { path: 'tasks', loadChildren: () => TasksModule },
     { path: 'moods', loadChildren: () => MoodsModule },
+    { path: 'squares', loadChildren: () => SquaresModule },
+    { path: 'circles', loadChildren: () => CirclesModule },
+    { path: 'triangle', loadChildren: () => TriangleModule },
   ]),
 ))
 export class AppModule {}
