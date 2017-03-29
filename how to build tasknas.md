@@ -51,6 +51,10 @@ And replace .root() with
 
 now it’s looking like a Material Design app, but you still don’t have any screens 
 
+this framer uses the material design structure layout guide 
+
+https://material.io/guidelines/layout/structure.html
+
 ### **WHAT'S NEXT?**
 
 give your app a name by configuring it in the AppFramer 
