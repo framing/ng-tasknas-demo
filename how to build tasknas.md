@@ -8,15 +8,17 @@ https://github.com/framing/ng-tasknas-demo
 
 hit clone (green button) on github
 
-git clone git@github.com:biznas/ng-app.git tasknas
+git clone git@github.com:framing/ng-tasknas-demo.git
 
 ### **NPM INSTALL**
+
 ```   
 cd tasknas
 npm i
 npm run build
 npm start
 ```
+
 loads app and developer dependencies (these are maintained by Biznas) 
 
 ### **SETTING UP MATERIAL DESIGN**
@@ -55,20 +57,23 @@ give your app a name by configuring it in the AppFramer
 
 as you can see in the screenshot, everything is strongly typed, so if your editor supports it, it will auto complete 
 
-*!!! add image of auto completion !!!*
+![auto complete.png](https://cloud.githubusercontent.com/assets/21727664/24475046/93d027a8-1483-11e7-805f-eb56be718fc2.png)
 
 hit save, and you’ll see the changes automatically in the browser 
 
 ### **LET'S CREATE A SCREEN**
 
 we’ll start with the dashboard 
+
 inside the app folder, create a folder called dashboard 
 
-and inside that folder create three files 
+and inside that folder create three files: 
 
 dashboard.component.html
 
-`<div> Welcome to dashboard </div>`
+```html
+<div> Welcome to dashboard </div>
+```
 
 dashboard.component.ts (this is just a regular dashboard component) 
 
@@ -133,7 +138,7 @@ import { AppFramer } from '@framing/ng-ui';
     sideNavItems: [
       { routerLink: 'dashboard', label: 'Dashboard' },
     ],
-    }))
+  }))
   .children([
     { path: '', redirectTo: 'dashboard' },
     { path: 'dashboard', loadChildren: () => DashboardModule },
@@ -149,9 +154,14 @@ now you have an app, with a screen, and it’s in the side nav...GREAT JOB!
 let’s add a task screen 
 
 create a tasks folder 
+
 create a tasks.component.html 
 
-inside of here create a `<div> tag saying “this is my task list” `
+inside of here create a 
+
+```html
+div tag saying <div> this is my task list </div>
+```
 
 create tasks.component.ts 
 
@@ -388,10 +398,10 @@ this is what you code should look like now
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 
-import { Itemframer, IteamDataFirebaseService } from '@framing/ng-ui';
+import { ItemFramer, ItemDataFirebaseService } from '@framing/ng-ui';
 
 import { TasksComponentsModule } from './components/tasks-components.module';
-import { TaskFormComponent } from './components/task-form.module';
+import { TaskFormComponent } from './components/task-form.component';
 
 @NgModule(Framing((framing) => framing
  .import(TasksComponentsModule)
