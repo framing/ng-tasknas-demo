@@ -19,11 +19,83 @@ const distDir = path.join(rootDir, 'dist');
 
 // ============================================================================
 
-let webpackConfig: webpack.Configuration = {
+let webpackConfig: webpack.Configuration[] = [
+{
+  target: 'node',
+  context: path.join(rootDir, 'src'),
+  entry: {
+    server: [ './server.ts' ],
+  },
+  resolve: {
+    extensions: [ '.ts', '.js' ],
+    modules: [ 'node_modules', 'src' ],
+    alias: {
+      src: path.resolve('./src'),
+    },
+  },
+  output: {
+    path: path.join(rootDir, 'dist'),
+    pathinfo: true,
+    filename: '[name].js',
+    libraryTarget: 'commonjs2',
+  },
+  module: {
+    rules: [
+      { enforce: 'pre', test: /angular\/material/, loader: 'imports-loader?window=>global' },
+      {
+        enforce: 'pre',
+        test: /\.ts$/,
+        use: [ 'tslint-loader' ],
+        exclude: /(node_modules)/,
+      },
+      {
+        test: /\.ts$/,
+        use: [ 'awesome-typescript-loader', 'angular2-template-loader', 'angular-router-loader' ],
+      },
+      {
+        test: /\.json$/,
+        use: [ 'json-loader' ],
+      },
+      {
+        test: /\.js$/,
+        use: [ 'imports-loader?define=>false', 'ng-annotate-loader' ],
+      },
+      {
+        test: /\.html$/,
+        use: [ 'raw-loader' ],
+      },
+      // other
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        use: [ 'file-loader?name=[name].[hash].[ext]' ],
+      },
+      {
+        test: /\.css$/,
+        use: [ 'to-string-loader', 'css-loader' ],
+      },
+      {
+        test: /\.scss$/,
+        use: [ 'to-string-loader', 'css-loader', 'sass-loader' ],
+      },
+      {
+        test: /\.less$/,
+        use: [ 'to-string-loader', 'css-loader?-url', 'less-loader' ],
+      },
+    ],
+  },
+  node: {
+    global: true,
+    __dirname: true,
+    __filename: true,
+    process: true,
+    Buffer: true,
+  },
+},
+{
   devtool: 'cheap-module-source-map',
   context: path.join(rootDir, 'src'),
   entry: {
-    main: [ './main.ts' ],
+    main: [ './client.ts' ],
   },
   resolve: {
     extensions: [ '.ts', '.js' ],
@@ -181,7 +253,8 @@ let webpackConfig: webpack.Configuration = {
     host: '0.0.0.0',
     port: 8080,
   },
-};
+}
+];
 
 // ============================================================================
 
@@ -218,7 +291,7 @@ for (let arg of process.argv) {
 }
 
 console.log('Using build-config alias ' + buildConfig);
-(webpackConfig.resolve.alias as any)['build-config'] = path.join(rootDir, buildConfig);
+(webpackConfig[1].resolve.alias as any)['build-config'] = path.join(rootDir, buildConfig);
 
 if (releaseBuild) {
   // production build
@@ -227,7 +300,7 @@ if (releaseBuild) {
   // add production plugins
   console.log('Adding production build plugins');
 
-  webpackConfig.plugins = webpackConfig.plugins.concat(
+  webpackConfig[1].plugins = webpackConfig[1].plugins.concat(
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') } ),
 
     new webpack.LoaderOptionsPlugin({
@@ -245,12 +318,12 @@ if (releaseBuild) {
 
 if (progressBarPlugin) {
   console.log('Default progress bar');
-  webpackConfig.plugins.push(new ProgressBarPlugin({ clear: false }));
+  webpackConfig[1].plugins.push(new ProgressBarPlugin({ clear: false }));
 }
 
 if (!devServer) {
   console.log('Cleaning dist folder');
-  webpackConfig.plugins.push(new CleanWebpackPlugin([ 'dist' ]));
+  webpackConfig[1].plugins.push(new CleanWebpackPlugin([ 'dist' ]));
 }
 
 // ============================================================================
@@ -260,3 +333,4 @@ module.exports = (env: any) => {
 };
 
 module.exports = webpackConfig;
+
