@@ -463,6 +463,9 @@ then (in the tasks.module.ts) add this into the item framer config:
 export class TasksModule {}
 ```
 
-now hit save!
+Save that and go check the app out. You'll see now selecting an existing task or creating a new one you can now mark your task as done and set a due date.
 
 Go ahead, update your tasks, have a beer, celebrate your success!
+
+You can see a more full featured version of Tasknas here:
+https://github.com/framing/ng-tasknas-demo
