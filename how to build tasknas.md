@@ -321,6 +321,20 @@ then you have to go to the firebase website and click “get started”
 
 http://firebase.google.com
 
+If this is your first project with Firebase you'll be presented with API access keys. Save this information for a later step.
+Otherwise select "Add Firebase to your web app" to see those API credentials
+
+Next, we need to enable read/write access to your data. Click "Database" from the left menu, select the "Rules" tab and paste the following in to the editor:
+
+```json
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+```
+
 then go into the src/app/app.module.ts and import the firebase module 
 
 ```typescript
