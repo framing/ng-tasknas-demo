@@ -422,7 +422,7 @@ and create a task-form.component.html with this code:
   </md-input-container>
 
   <md-input-container>
-    <input md-input [(ngModel)]="itemModel.item.dueDate" placeholder="Due Date">
+    <input md-input [(ngModel)]="itemModel.item.dueDate" placeholder="Due Date" type="date">
   </md-input-container>
 </div>
 ```
