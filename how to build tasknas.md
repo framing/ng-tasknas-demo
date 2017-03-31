@@ -411,18 +411,20 @@ export class TaskFormComponent {
 
 and create a task-form.component.html with this code: 
 
-```typescript 
-<div fxFlex="column">
+```html 
+<div>
   <md-input-container>
-    <input md-input [(ngModel)]="itemModel.item.label" placeholder="Label">
+    <input mdInput [(ngModel)]="itemController.model.item.label" placeholder="Label">
   </md-input-container>
+</div>
 
-  <md-input-container>
-    <md-checkbox [(ngModel)]="itemModel.item.done">Done</md-checkbox>
-  </md-input-container>
+<div>
+  <md-checkbox [(ngModel)]="itemController.model.item.done">Done</md-checkbox>
+</div>
 
+<div>
   <md-input-container>
-    <input md-input [(ngModel)]="itemModel.item.dueDate" placeholder="Due Date" type="date">
+    <input mdInput [(ngModel)]="itemController.model.item.dueDate" placeholder="Due Date" type="date">
   </md-input-container>
 </div>
 ```
