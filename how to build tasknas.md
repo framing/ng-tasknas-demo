@@ -317,7 +317,7 @@ step 1 - install the firebase dependencies
 npm i angularfire2 firebase --save
 ``` 
 
-then you have to go to the firebase website and click “get started” 
+then you have to go to the firebase website, click “get started” and signup for an account to create a new project.
 
 http://firebase.google.com
 
