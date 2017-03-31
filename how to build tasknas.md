@@ -48,10 +48,10 @@ To do this:
 npm i @framing/ng-tasknas-framers --save
 ```
 
-Open up src/app/app.module.ts and add the following import:
+Open up src/app/app.module.ts, remove the AppComponent import and replace it with the following:
 
 ```typescript
-import { AppFramer } from '@framing/ng-ui';
+import { AppFramer } from '@framing/ng-tasknas-framers';
 ```
 
 And replace:
@@ -63,7 +63,7 @@ And replace:
 with:
 
 ```typescript
-  .frame(new AppFramer())
+  .frame(new AppFramer())))
 ```
 
 Ok, wait for it to build, your browser will automatically refresh.
@@ -75,7 +75,7 @@ Woo hoo! Now it’s looking like a Material Design app!
 Give your app a name by configuring it in the AppFramer
 
 ```typescript
-  .frame(new AppFramer().model({title: 'Tasknas'}))
+  .frame(new AppFramer().model({ title: 'Tasknas' }))))
 ```
 
 as you can see in the screenshot, everything is strongly typed, so if your editor supports it, it will auto complete 
@@ -95,7 +95,7 @@ and inside that folder create three files:
 dashboard.component.html
 
 ```html
-<div> Welcome to dashboard </div>
+<div>Welcome to the dashboard</div>
 ```
 
 dashboard.component.ts (this is just a regular dashboard component) 
@@ -104,8 +104,8 @@ dashboard.component.ts (this is just a regular dashboard component)
 import { Component } from '@angular/core';
 
 @Component({
- selector: 'dashboard',
- templateUrl: './dashboard.component.html',
+  selector: 'dashboard',
+  templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent {}
 ```
@@ -124,7 +124,7 @@ import { DashboardComponent } from './dashboard.component';
 export class DashboardModule {}
 ```
 
-now we have the dashboard screen, but we have to do 3 things! 
+now we have the dashboard screen, but we have to do 3 things to src/app/app.module.ts! 
 
 1. import the dashboard module
 2. add dashboard as a child route of the app 
@@ -135,55 +135,78 @@ first, import the dashboard module
 import { DashboardModule } from './dashboard/dashboard.module';
 ```
 
-then add this code below the .frame() method 
+then add a .route() and .children() call chained to the .frame() method 
 ```typescript
-.children([
-   { path: '', redirectTo: 'dashboard' },
-   { path: 'dashboard', loadChildren: () => DashboardModule },
- ])
+  .route({}, {
+    forRoot: true,
+    extraRootRouterOptions: {
+      enableTracing: true,
+      useHash: true,
+    },
+  })
+  .children([
+    { path: '', redirectTo: 'dashboard' },
+    { path: 'dashboard', loadChildren: () => DashboardModule },
+  ])
  ```
 
 it will now appear in your browser when you hit save, but it’s not listed in the side nav
 
 to do that we need to add sideNavItems array with a single item in it (dashboard) 
 
-here is what your code should look like now
+```typescript
+  .frame(new AppFramer().model({
+    title: 'Tasknas',
+    sideNavItems: [
+      { label: 'Dashboard', routerLink: 'dashboard' },
+    ],
+  }))
+```
+
+In case you're not seeing the exciting result I'm describing, here is what your code should look like now:
 
 ```typescript
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 
-import { AppFramer } from '@framing/ng-ui';
+import { AppFramer } from '@framing/ng-tasknas-framers';
+
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule(Framing((framing) => framing
-  .frame(new AppFramer({
+  .frame(new AppFramer().model({
     title: 'Tasknas',
     sideNavItems: [
-      { routerLink: 'dashboard', label: 'Dashboard' },
+      { label: 'Dashboard', routerLink: 'dashboard' },
     ],
   }))
+  .route({}, {
+    forRoot: true,
+    extraRootRouterOptions: {
+      enableTracing: true,
+      useHash: true,
+    },
+  })
   .children([
     { path: '', redirectTo: 'dashboard' },
     { path: 'dashboard', loadChildren: () => DashboardModule },
-  ])
-))
+  ])))
 export class AppModule {}
+
 ```
 
-now you have an app, with a screen, and it’s in the side nav...GREAT JOB! 
+Now you have an app, with a screen, and it’s in the side nav...GREAT JOB! 
 
 ### **LET'S GET OUR SECOND SCREEN STARTED** 
 
-let’s add a task screen 
+Let’s add a task screen!
 
-create a tasks folder 
+Inside the app folder create a tasks folder.
 
 create a tasks.component.html 
 
-inside of here create a 
-
 ```html
-div tag saying <div> this is my task list </div>
+<div>this is my task list </div>
 ```
 
 create tasks.component.ts 
@@ -192,9 +215,8 @@ create tasks.component.ts
 import { Component } from '@angular/core';
 
 @Component({
- selector: 'tasks',
- styleUrls: [ './tasks.component.css' ],
- templateUrl: './tasks.component.html',
+  selector: 'tasks',
+  templateUrl: './tasks.component.html',
 })
 export class TasksComponent {}
 ```
@@ -224,16 +246,26 @@ first, import the tasks module
 import { TasksModule } from './tasks/tasks.module';
 ```
 
-then add another item to the sideNavItems array 
+then the Tasks screen to the sideNavItems array 
 
 ```typescript
-{ routerLink: 'tasks', label: 'Tasks' },
+.frame(new AppFramer().model({
+    title: 'Tasknas',
+    sideNavItems: [
+      { label: 'Dashboard', routerLink: 'dashboard' },
+      { label: 'Tasks', routerLink: 'tasks' },
+    ],
+  }))
 ```
 
 then add another item to the .children array
 
 ```typescript
-{ path: 'tasks', loadChildren: () => TasksModule },
+  .children([
+    { path: '', redirectTo: 'dashboard' },
+    { path: 'dashboard', loadChildren: () => DashboardModule },
+    { path: 'tasks', loadChildren: () => TasksModule },
+  ])))
 ```
 
 hit save and the app will auto refresh in the browser and you’ll now see the tasks screen and you can navigate to it 
