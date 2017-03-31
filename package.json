@@ -33,6 +33,7 @@
     "@angular/platform-browser-dynamic": "4.0.0",
     "@angular/platform-server": "4.0.0",
     "@angular/router": "4.0.0",
+    "@biznas/ng-core": "^0.6.5",
     "@framing/ng-core": "0.7.2",
     "@framing/ng-security": "0.7.2",
     "@framing/ng-tasknas-framers": "0.7.2",
