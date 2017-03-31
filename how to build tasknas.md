@@ -469,3 +469,6 @@ Go ahead, update your tasks, have a beer, celebrate your success!
 
 You can see a more full featured version of Tasknas here:
 https://github.com/framing/ng-tasknas-demo
+
+You can examine the Tasknas Framers source here:
+https://github.com/framing/ng-framing/tree/master/packages/ng-tasknas-framers
