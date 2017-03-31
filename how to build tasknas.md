@@ -23,7 +23,7 @@ loads app and developer dependencies (these are maintained by Biznas)
 
 ### **SETTING UP MATERIAL DESIGN**
 
-open up http://localhost8080 in a browser, you’ll see a starter screen 
+open up http://localhost:8080 in a browser, you’ll see a starter screen 
 
 the welcome screen is nice, but we want our app to look like a material app
 
