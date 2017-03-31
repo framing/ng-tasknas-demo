@@ -119,7 +119,7 @@ import { Framing } from '@framing/ng-core';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule(Framing((framing) => framing
- .componentAndDeclare(DashboardComponent),
+  .componentAndDeclare(DashboardComponent),
 ))
 export class DashboardModule {}
 ```
@@ -158,7 +158,7 @@ to do that we need to add sideNavItems array with a single item in it (dashboard
   .frame(new AppFramer().model({
     title: 'Tasknas',
     sideNavItems: [
-      { label: 'Dashboard', routerLink: 'dashboard' },
+      { label: 'Dashboard', routerLink: '/dashboard' },
     ],
   }))
 ```
@@ -177,7 +177,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
   .frame(new AppFramer().model({
     title: 'Tasknas',
     sideNavItems: [
-      { label: 'Dashboard', routerLink: 'dashboard' },
+      { label: 'Dashboard', routerLink: '/dashboard' },
     ],
   }))
   .route({}, {
@@ -230,8 +230,7 @@ import { Framing } from '@framing/ng-core';
 import { TasksComponent } from './tasks.component';
 
 @NgModule(Framing((framing) => framing
- .componentAndDeclare(TasksComponent)
-))
+  .componentAndDeclare(TasksComponent)))
 export class TasksModule {}
 ```
 
@@ -252,8 +251,8 @@ then the Tasks screen to the sideNavItems array
 .frame(new AppFramer().model({
     title: 'Tasknas',
     sideNavItems: [
-      { label: 'Dashboard', routerLink: 'dashboard' },
-      { label: 'Tasks', routerLink: 'tasks' },
+      { label: 'Dashboard', routerLink: '/dashboard' },
+      { label: 'Tasks', routerLink: '/tasks' },
     ],
   }))
 ```
@@ -272,14 +271,18 @@ hit save and the app will auto refresh in the browser and you’ll now see the t
 
 ### **USE ITEM FRAMER TO MANAGE TASKS**
 
-app framer provides standard requirements that would be in a Material based app 
+So, that's not really a great list of tasks. To fix that, lets use ItemFramer
 
-item framer provides standard requirements around managing data (CRUD)
+AppFramer provides standard requirements that would be in a Material based app 
+
+ItemFramer provides standard requirements around managing data (CRUD)
+
+Complete the following in src/app/tasks/tasks.module.ts
 
 step 1 - import the item framer 
 
 ```typescript
-import { ItemFramer } from 'framers/item/item.framer';
+import { ItemFramer } from '@framing/ng-tasknas-framers';
 ```
 
 step 2 - get rid of the custom tasks component you made and replace it
@@ -287,19 +290,19 @@ step 2 - get rid of the custom tasks component you made and replace it
 so this line: 
 
 ```typescript
-.componentAndDeclare(TasksComponent)
+  .componentAndDeclare(TasksComponent))
 ```
 
 becomes this:
 
 ```typescript
-.frame(new ItemFramer({
-   items: [
-     { label: 'Do laundry' },
-     { label: 'Clean dishes' },
-     { label: 'Wash car' },
-   ]
- }))
+  .frame(new ItemFramer({
+    items: [
+      { label: 'Do laundry' },
+      { label: 'Clean dishes' },
+      { label: 'Wash car' },
+    ],
+  }))))
 ```
 
 ### **LET’S KEEP YOUR DATA AROUND FOR A WHILE**
@@ -310,13 +313,15 @@ go to your terminal window and kill the app by hitting “ctrl + c”
 
 step 1 - install the firebase dependencies 
 
-`npm i angularfire2 firebase --save` 
+```
+npm i angularfire2 firebase --save
+``` 
 
 then you have to go to the firebase website and click “get started” 
 
 http://firebase.google.com
 
-then go into the app.module.ts and import the firebase module 
+then go into the src/app/app.module.ts and import the firebase module 
 
 ```typescript
 import { AngularFireModule } from 'angularfire2';
@@ -342,21 +347,24 @@ above your .frame() method, include this:
 .import(AngularFireModule.initializeApp(firebaseConfig))
 ```
 
-next, let’s look at the tasks.module.ts file 
+next, open src/app/tasks/tasks.module.ts file 
 
-we import the firebase adaptor we created 
+Import the firebase adaptor we created 
 
 ```typescript
-	import { ItemDataFirebaseService } from 'framers/item/shared/item-data-firebase.service';
+import { ItemDataFirebaseService, ItemFramer } from '@framing/ng-tasknas-framers';
 ```
 
 next, we are going to update ItemFramer so that it is now longer a static array of tasks 
 
 ```typescript
-.frame(new ItemFramer({
-   endpoint: 'tasks',
-   itemDataProvider: ItemDataFirebaseService,
- })),
+@NgModule(Framing((framing) => framing
+  .frame(new ItemFramer()
+    .itemDataProvider(ItemDataFirebaseService)
+    .model({
+      endpoint: 'tasks',
+    }))))
+export class TasksModule {}
  ```
 
 hit save - the screen will reload 
@@ -369,21 +377,21 @@ if you know the local IP address of your computer you can load the app in a brow
 
 tasks need more than a label 
 
-so to do that create a components folder underneath the tasks folder and add this code into the task-form.component.ts file: 
+so to do that create src/app/tasks/view folder and add this code into a task-form.component.ts file: 
 
 ```typescript 
 import { Component } from '@angular/core';
 
-import { ItemModel } from '@framing/ng-ui';
+import { ItemController } from '@framing/ng-tasknas-framers';
 
 @Component({
- selector: 'task-form',
- templateUrl: './task-form.component.html',
+  selector: 'task-form',
+  templateUrl: './task-form.component.html',
 })
 export class TaskFormComponent {
- public constructor(
-   public itemModel: ItemModel,
- ) {}
+  public constructor(
+    public itemController: ItemController,
+  ) {}
 }
 ```
 
@@ -391,22 +399,21 @@ and create a task-form.component.html with this code:
 
 ```typescript 
 <div fxFlex="column">
- <md-input-container>
-   <input md-input [(ngModel)]="itemModel.item.label" placeholder="Label">
- </md-input-container>
+  <md-input-container>
+    <input md-input [(ngModel)]="itemModel.item.label" placeholder="Label">
+  </md-input-container>
 
- <md-input-container>
-   <md-checkbox [(ngModel)]="itemModel.item.done">Done</md-checkbox>
- </md-input-container>
+  <md-input-container>
+    <md-checkbox [(ngModel)]="itemModel.item.done">Done</md-checkbox>
+  </md-input-container>
 
- <md-input-container>
-   <input md-input [(ngModel)]="itemModel.item.dueDate" placeholder="Due Date">
- </md-input-container>
+  <md-input-container>
+    <input md-input [(ngModel)]="itemModel.item.dueDate" placeholder="Due Date">
+  </md-input-container>
 </div>
 ```
 
-and create task-form.component.module.ts and add this in: 
-
+and create tasks-view.module.ts and add this in: 
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -421,50 +428,39 @@ import { TaskFormComponent } from './task-form.component';
  ])
  .declarationsAndEntryComponents([
    TaskFormComponent,
- ])
-))
-export class TasksComponentsModule {}
+ ])))
+export class TasksViewModule {}
 ```
 
 and then go back into the tasks.module.ts file and add in: 
 
-
 ```typescript
-import { TasksComponentsModule } from './components/tasks-components.module';
-
-import { TaskFormComponent } from './components/task-form.component';
+import { TaskFormComponent } from './view/task-form.component';
+import { TasksViewModule } from './view/tasks-view.module';
 ```
 
 then in tasks.module.ts file above the .frame() method add in: 
 
 ```typescript
-.import(TasksComponentsModule)
+  .import(TasksViewModule)
 ```
 
 then (in the tasks.module.ts) add this into the item framer config: 
 
 ```typescript
-itemFormComponent: TaskFormComponent,
-```
-
-this is what your code should look like now 
-
-```typescript
-import { NgModule } from '@angular/core';
-import { Framing } from '@framing/ng-core';
-
-import { ItemFramer, ItemDataFirebaseService } from '@framing/ng-ui';
-
-import { TasksComponentsModule } from './components/tasks-components.module';
-import { TaskFormComponent } from './components/task-form.component';
-
 @NgModule(Framing((framing) => framing
- .import(TasksComponentsModule)
- .frame(new ItemFramer({
-   endpoint: 'tasks',
-   itemDataProvider: ItemDataFirebaseService,
-   itemFormComponent: TaskFormComponent,
- })),
+  .import(TasksViewModule)
+  .frame(new ItemFramer()
+    .itemDataProvider(ItemDataFirebaseService)
+    .model({
+      endpoint: 'tasks',
+    })
+    .view({
+      itemFormComponent: TaskFormComponent,
+    }))))
 export class TasksModule {}
 ```
+
 now hit save!
+
+Go ahead, update your tasks, have a beer, celebrate your success!
