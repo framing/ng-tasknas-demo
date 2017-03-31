@@ -3,19 +3,17 @@
 
 ### **CLONE THE PROJECT**
 
-go to the repo 
-https://github.com/framing/ng-tasknas-demo 
+Use our ng-app project to get started
 
-hit clone (green button) on github
-
-git clone git@github.com:framing/ng-tasknas-demo.git
+```
+git clone git@github.com:biznas/ng-app.git tasknas
+```
 
 ### **NPM INSTALL**
 
 ```   
 cd tasknas
 npm i
-npm run build
 npm start
 ```
 
@@ -27,37 +25,58 @@ open up http://localhost:8080 in a browser, you’ll see a starter screen
 
 the welcome screen is nice, but we want our app to look like a material app
 
-open up the app module, and this is what you’re going to see 
+open up the src/app/app.module.ts, and this is what you’re going to see 
 
 ```typescript
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 
+import { AppComponent } from './app.component';
+
 @NgModule(Framing((framing) => framing
- .root()
-))
+  .root()
+  .componentAndDeclare(AppComponent)))
 export class AppModule {}
 ```
-you want it to look like an app, so next you 
+The ng-app project got you up and running quickly with Angular 4, but it's not much of an app yet. To help with that, I'll introduce you to the AppFramer, it's job is to enforce the Google Material Layout Structure Guidelines. 
+
+https://material.io/guidelines/layout/structure.html
+
+To do this:
+
+```
+npm i @framing/ng-tasknas-framers --save
+```
+
+Open up src/app/app.module.ts and add the following import:
 
 ```typescript
 import { AppFramer } from '@framing/ng-ui';
 ```
 
-And replace .root() with
+And replace:
+
 ```typescript
-.frame(new AppFramer())
+  .root()
+  .componentAndDeclare(AppComponent)))
+```
+with:
+
+```typescript
+  .frame(new AppFramer())
 ```
 
-now it’s looking like a Material Design app, but you still don’t have any screens 
+Ok, wait for it to build, your browser will automatically refresh.
 
-this framer uses the material design structure layout guide 
-
-https://material.io/guidelines/layout/structure.html
+Woo hoo! Now it’s looking like a Material Design app!
 
 ### **WHAT'S NEXT?**
 
-give your app a name by configuring it in the AppFramer 
+Give your app a name by configuring it in the AppFramer
+
+```typescript
+  .frame(new AppFramer().model({title: 'Tasknas'}))
+```
 
 as you can see in the screenshot, everything is strongly typed, so if your editor supports it, it will auto complete 
 
