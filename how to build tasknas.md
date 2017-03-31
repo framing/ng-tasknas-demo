@@ -108,7 +108,7 @@ export class DashboardModule {}
 now we have the dashboard screen, but we have to do 3 things! 
 
 1. import the dashboard module
-2. add dashborad as a child route of the app 
+2. add dashboard as a child route of the app 
 3. re-direct to that route when we load the app 
 
 first, import the dashboard module
@@ -312,11 +312,11 @@ hit save - the screen will reload
 
 now for the magic 
 
-if you know the local IP address of your computer you can load the app in a browser on your phone and add a new task, it will then show up in the browser your computer...NEAT!
+if you know the local IP address of your computer you can load the app in a browser on your phone and add a new task, it will then show up in the browser of your computer...NEAT!
 
 ### **LASTLY**
 
-tasks need more that a label 
+tasks need more than a label 
 
 so to do that create a components folder underneath the tasks folder and add this code into the task-form.component.ts file: 
 
@@ -396,7 +396,7 @@ then (in the tasks.module.ts) add this into the item framer config:
 itemFormComponent: TaskFormComponent,
 ```
 
-this is what you code should look like now 
+this is what your code should look like now 
 
 ```typescript
 import { NgModule } from '@angular/core';
