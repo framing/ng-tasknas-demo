@@ -6,7 +6,7 @@
 Use our ng-app project to get started
 
 ```
-git clone git@github.com:biznas/ng-app.git tasknas
+git clone https://github.com/biznas/ng-app.git tasknas
 ```
 
 ### **NPM INSTALL**
