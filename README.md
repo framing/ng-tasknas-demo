@@ -10,4 +10,5 @@
 - open browser to [`http://localhost:8080`](http://localhost:8080)
 
 ### Link to full walkthrough guide
-https://drive.google.com/file/d/0B_GemLShh27RYVlyRG9zcVphVkE/view?usp=sharing
+https://drive.google.com/file/d/0B_GemLShh27RS19YSUd6Vjd1Z2M/view
+
