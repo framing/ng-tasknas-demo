@@ -1,51 +1,48 @@
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 import { AppFramer } from '@framing/ng-tasknas-framers';
-
 import { AngularFireModule } from 'angularfire2';
 
 import { SharedModule } from './shared/shared.module';
 
-import { CirclesModule } from './circles/circles.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MoodsModule } from './moods/moods.module';
-import { SquaresModule } from './squares/squares.module';
 import { TasksModule } from './tasks/tasks.module';
-import { TriangleModule } from './triangle/triangle.module';
 import { UsersModule } from './users/users.module';
 
-import { AppBarTitleComponent } from './shared/components/app-bar-title/app-bar-title.component';
+import { AppBarTitleComponent } from './view/app-bar-title.component';
+import { AppViewModule } from './view/app-view.module';
 
-export const firebaseConfig = {
-  apiKey: 'AIzaSyDR7bQt1Ey0yysX3drYZV_85dBrs4UNebc',
-  authDomain: 'tasknas-4b74d.firebaseapp.com',
-  databaseURL: 'https://tasknas-4b74d.firebaseio.com',
-  storageBucket: 'tasknas-4b74d.appspot.com',
-  messagingSenderId: '991560340361',
-};
-
+/**
+ * Example module using AppFramer with Firebase
+ */
 @NgModule(Framing((framing) => framing
   .imports([
-    SharedModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(require('../../firebase.config.json')),
+    AppViewModule,
   ])
-  .declareAndEntryComponent(AppBarTitleComponent)
-  .frame(new AppFramer(
-    {
+  .frame(new AppFramer()
+    .model({
+      /**
+       * Override default AppFramer config
+       * @see https://github.com/framing/ng-framing/blob/master/packages/ng-tasknas-framers/src/app/app.model.ts
+       */
+      title: 'Tasknas',
       sideNavItems: [
         { routerLink: '/dashboard', label: 'Dashboard' },
         { routerLink: '/tasks', label: 'Tasks' },
         { routerLink: '/moods', label: 'Moods' },
-        { routerLink: '/squares', label: 'Squares' },
-        { routerLink: '/circles', label: 'Circles' },
-        { routerLink: '/triangle', label: 'Triangle' },
         { routerLink: '/users', label: 'Users' },
       ],
-    },
-    {
+    })
+    .view({
+      /**
+       * Override default AppFramer view components
+       * @see https://github.com/framing/ng-framing/blob/master/packages/ng-tasknas-framers/src/app/app.view.ts
+       */
       appBarTitleComponent: AppBarTitleComponent,
-    },
-  ))
+    }),
+  )
   .route({}, {
     forRoot: true,
     extraRootRouterOptions: {
@@ -59,9 +56,6 @@ export const firebaseConfig = {
     { path: 'users', loadChildren: () => UsersModule },
     { path: 'tasks', loadChildren: () => TasksModule },
     { path: 'moods', loadChildren: () => MoodsModule },
-    { path: 'squares', loadChildren: () => SquaresModule },
-    { path: 'circles', loadChildren: () => CirclesModule },
-    { path: 'triangle', loadChildren: () => TriangleModule },
   ]),
 ))
 export class AppModule {}

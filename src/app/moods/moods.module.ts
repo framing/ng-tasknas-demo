@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 import { ItemDataFirebaseService, ItemFramer } from '@framing/ng-tasknas-framers';
 
-import { MoodsComponent } from './moods.component';
+import { SharedModule } from 'app/shared/shared.module';
 
-import { SharedModule } from '../shared/shared.module';
-
+/**
+ * Example module using ItemFramer with Firebase
+ */
 @NgModule(Framing((framing) => framing
-  .frame(new ItemFramer({ endpoint: 'moods' })
-    .itemDataProvider(ItemDataFirebaseService),
-  )
-  .imports([
-    SharedModule,
-  ]),
+  .import(SharedModule)
+  .frame(new ItemFramer()
+    .itemDataProvider(ItemDataFirebaseService)
+    .model({ endpoint: 'moods' }),
+  ),
 ))
 export class MoodsModule {}

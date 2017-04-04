@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './app-bar-title.component.html',
 })
 export class AppBarTitleComponent {
-  public logoUrl: string = require('../../assets/light.logo.tasknas.png');
+  public logoUrl: string = require('app/shared/assets/light.logo.tasknas.png');
 }
