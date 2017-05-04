@@ -329,8 +329,8 @@ Next, we need to enable read/write access to your data. Click "Database" from th
 ```json
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": true,
+    ".write": true"
   }
 }
 ```
