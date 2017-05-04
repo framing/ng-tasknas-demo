@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 import { AppFramer } from '@framing/ng-tasknas-framers';
-import { AngularFireModule } from 'angularfire2';
+// import { AngularFireModule } from 'angularfire2';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -18,7 +18,7 @@ import { AppViewModule } from './view/app-view.module';
  */
 @NgModule(Framing((framing) => framing
   .imports([
-    AngularFireModule.initializeApp(require('../../firebase.config.json')),
+    // AngularFireModule.initializeApp(require('../../firebase.config.json')),
     AppViewModule,
   ])
   .frame(new AppFramer()
