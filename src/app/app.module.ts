@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Framing } from '@framing/ng-core';
 import { AppFramer } from '@framing/ng-tasknas-framers';
-// import { AngularFireModule } from 'angularfire2';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { SharedModule } from './shared/shared.module';
 
@@ -18,7 +21,9 @@ import { AppViewModule } from './view/app-view.module';
  */
 @NgModule(Framing((framing) => framing
   .imports([
-    // AngularFireModule.initializeApp(require('../../firebase.config.json')),
+    AngularFireModule.initializeApp(require('../../firebase.config.json')),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AppViewModule,
   ])
   .frame(new AppFramer()
