@@ -1,8 +1,7 @@
 {
-  "apiKey": "AIzaSyCqQrsvpKa9AgZHZYX6iSblGFkerVEZ6sQ",
-  "authDomain": "tasknas-test.firebaseapp.com",
-  "databaseURL": "https://tasknas-test.firebaseio.com",
-  "projectId": "tasknas-test",
-  "storageBucket": "tasknas-test.appspot.com",
-  "messagingSenderId": "788111291965"
+  "apiKey": "API_KEY",
+  "authDomain": "AUTH_DOMAIN",
+  "databaseURL": "DATABASE_URL",
+  "storageBucket": "STORAGE_BUCKET",
+  "messagingSenderId": "MESSAGING_SENDER_ID"
 }
